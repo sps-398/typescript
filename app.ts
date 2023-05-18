@@ -1,13 +1,13 @@
-const n1 = document.getElementById('n1') as HTMLInputElement;
-const n2 = document.getElementById('n2') as HTMLInputElement;
-const addBtn = document.querySelector('button')!;
-const result = document.getElementById('result')!;
+import express from 'express';
 
-function add(n1: number, n2: number) {
-   return n1 + n2; 
-}
+import todosRoutes from './routes/todos';
 
-addBtn.addEventListener('click', (e) => {
-    const sum = add(+n1.value, +n2.value);
-    result.innerText = `${sum}`;
-});
+import bodyParser from 'body-parser';
+
+const app = express();
+
+app.use(bodyParser.json());
+
+app.use('/', todosRoutes);
+
+app.listen(3000);
